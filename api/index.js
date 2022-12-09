@@ -20,11 +20,12 @@ const DbConnect = async () => {
   }
 }
 //^ It will try to connect MongoDB again to again
-mongoose.connection.on("disconnected",()=>{
+mongoose.connection.on("disconnected", () => {
   console.log("MongoDB disconnected!")
 })
 
 //! MiddleWares
+app.use(express.json())
 app.use('/auth', authRoute);
 app.use('/users', usersRoute);
 app.use('/hotels', hotelRoute);

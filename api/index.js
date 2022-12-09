@@ -1,12 +1,16 @@
-import {express} from "express";
+import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import authRoute from "./routes/auth.js";
+import usersRoute from "./routes/users.js";
+import hotelRoute from "./routes/hotels.js";
+import roomsRoute from "./routes/rooms.js";
 
-dotenv.config();
 const app = express()
+dotenv.config();
 
 
-//! Connect Database
+//! Connect Database MongoDB
 const DbConnect = async () => {
   try {
     await mongoose.connect(process.env.MONGO_LINK);
@@ -15,15 +19,16 @@ const DbConnect = async () => {
     throw error;
   }
 }
-
-
-//! It will try to connect MongoDB again to again
-mongoose.connect.on("disconnected",()=>{
+//^ It will try to connect MongoDB again to again
+mongoose.connection.on("disconnected",()=>{
   console.log("MongoDB disconnected!")
 })
-mongoose.connect.on("connected",()=>{
-  console.log("MongoDb connected!")
-})
+
+//! MiddleWares
+app.use('/auth', authRoute);
+app.use('/users', usersRoute);
+app.use('/hotels', hotelRoute);
+app.use('/rooms', roomsRoute);
 
 
 app.listen(5000, () => {

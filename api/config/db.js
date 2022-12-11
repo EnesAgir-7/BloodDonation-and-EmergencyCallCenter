@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 export const ConnectDB = async () => {
   try {  
     await mongoose.connect(process.env.MONGO_LINK);
-    console.log("Connected to MongoDB");
+    console.log("🔥 Connected to MongoDB 🔥");
   } catch (err) {
     throw err;
   }

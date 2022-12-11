@@ -5,6 +5,7 @@ import usersRoute from "./routes/users.js";
 import hotelRoute from "./routes/hotels.js";
 import roomsRoute from "./routes/rooms.js";
 import { ConnectDB } from "./config/db.js";
+import cookieParser from "cookie-parser";
 
 //! load env vars
 dotenv.config({path:'./config/config.env'});
@@ -12,6 +13,7 @@ dotenv.config({path:'./config/config.env'});
 const app = express()
 
 //! MiddleWares
+app.use(cookieParser())
 app.use(express.json())
 
 app.use('/auth', authRoute);

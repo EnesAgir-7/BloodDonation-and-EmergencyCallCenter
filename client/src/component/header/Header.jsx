@@ -36,6 +36,14 @@ export const Header = () => {
           more with a free EA Booking App account
         </p>
         <button className="headerBtn">Sign in/ Register</button>
+        <div className="headerSearchItem">
+          <FontAwesomeIcon icon={faBed} className="headerIcon" />
+          <input
+            type="text"
+            placeholder="Where are you going?"
+            className="headerSearchInput"
+          />
+        </div>
       </div>
     </div>
   )
